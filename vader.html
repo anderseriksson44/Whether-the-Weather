@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<!--    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">-->
+    <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+    
+    
+    <!-- Custom styles for this template -->
+    <link href="style.css" rel="stylesheet">
+    
+    <title>Väder</title>
+
+</head>
+
+<body class="firstpage-bg">
+
+<nav class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button> 
+                <a class="navbar-brand" href="#">Whether the Weather</a>
+            </div>
+            <div class="collapse navbar-collapse" id="myNavbar">
+                <ul class="nav navbar-right navbar-nav">
+                <li class="active"><a href="#">Home</a></li>
+                <li><a href="#">Händelser</a></li>
+                <li><a href="#"><span class="glyphicon glyphicon-user"></span>  Anders Eriksson</a></li>
+                <li><a href="#"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
+                </ul>
+            </div>
+    </div><!--/.navbar-collapse -->
+     
+</nav> 
+
+        
+    <!-- Main jumbotron for a primary marketing message or call to action -->
+<section class="container">
+    <div class="jumbotron">
+        <h1 class="text-center">Stad</h1>
+        <form class="text-center">
+                <input class="form-control text-center" type="text" id="query" value="" placeholder="Type in a city"/><br><br>
+<!--                <input type="submit" id="search" class="btn btn-primary" value="Search" />-->
+            <button type="button">Sök</button>
+        </form>
+    </div>
+    <div class="jumbotron">
+        <div id="results"></div>
+        <div id="sunset"></div>
+        <h3>Google Maps vy</h3>
+        <div id="map"></div>
+        <script async defer
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC_CEn0WN8oT9awtUxnmC7ypT0AJVRUa44&callback=initMap"></script>
+    </div>
+</section>
+
+    <section class="container">
+    <h1 class="text-center"></h1>
+    
+    <div class="row">
+
+        <div class="col-md-4 col-sm-4 col-xs-12">
+            <div id="karta" class="box text-center">
+                <h2>Karta</h2>
+            </div>
+        </div>
+       
+       <div class="col-md-4 col-sm-4 col-xs-12">
+            <div id="solned" class="box text-center">
+                <h2>Solens upp och nedgång</h2>
+            </div>
+        </div>
+       
+        <div class="col-md-4 col-sm-4 col-xs-12">
+            <div id="wheather" class="box text-center">
+                <h2>Väder</h2>
+            </div>
+        </div>
+       
+
+    </div>
+</section>
+<footer class="footer">
+
+			<p class="footer-slogan">Whether the Weather</p>
+
+			
+
+			<p class="footer-company-name">&copy; Anders Eriksson 2016</p>
+
+</footer>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="city.js"></script>
+        
+</body>
+</html>

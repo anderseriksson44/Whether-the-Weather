@@ -30,6 +30,14 @@
                 </button> 
                 <a class="navbar-brand" href="#">Whether the Weather</a>
             </div>
+             <form class="navbar-form navbar-right">
+                 <div class="form-group">
+                     <input type="text" class="form-control" id="stad" placeholder="Sök plats">
+                 </div>
+                 <button type="submit" id="submit" name="submit" class="btn btn-default">Submit</button>
+            </form>
+            
+<!--
             <div class="collapse navbar-collapse" id="myNavbar">
                 <ul class="nav navbar-right navbar-nav">
                 <li class="active"><a href="#">Home</a></li>
@@ -38,28 +46,30 @@
                 <li><a href="#"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
                 </ul>
             </div>
-    </div><!--/.navbar-collapse -->
+-->
+        </div><!--/.navbar-collapse -->
      
 </nav> 
 
         
     <!-- Main jumbotron for a primary marketing message or call to action -->
 <section class="container">
-    <div class="jumbotron">
-        <h1 class="text-center">Stad</h1>
-        <form class="text-center">
-                <input class="form-control text-center" type="text" id="query" value="" placeholder="Type in a city"/><br><br>
+<!--    <div class="jumbotron">-->
+<!--        <h1 class="text-center">Stad</h1>-->
+<!--        <form class="text-center">-->
+<!--                <input class="form-control text-center" type="text" id="stad" value="" placeholder="Välj en stad"/><br><br>-->
 <!--                <input type="submit" id="search" class="btn btn-primary" value="Search" />-->
-            <button type="button">Sök</button>
-        </form>
-    </div>
+<!--            <button type="button">Sök</button>-->
+<!--        </form>-->
+<!--    </div>-->
     <div class="jumbotron">
         <div id="results"></div>
         <div id="sunset"></div>
-        <h3>Google Maps vy</h3>
+        <h4>Powered by Google Maps</h4>
         <div id="map"></div>
         <script async defer
         src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC_CEn0WN8oT9awtUxnmC7ypT0AJVRUa44&callback=initMap"></script>
+        <div id="vader"></div>
     </div>
 </section>
 

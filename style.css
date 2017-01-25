@@ -1,19 +1,43 @@
 
 
 /* Declare heights because of positioning of img element */
+.hide {
+    display: none;
+}
 
-img {
-    display:inline-flex;
-    pos
-    vertical-align:middle;
-    margin:auto;
+.symbol {
+    width: 350px;
+    height: auto;
+    }
+
+.table {
+    margin-top: 20px;
 }
 .solupp {
     width: 100px;
     height: 100px;
-    object-position: bottom;
+    position:relative;
+    bottom: -150px;
+    left: 12%;
+    z-index: -1;
+    
+}
+.moln {
+    width: 200px;
+    height: auto;
+    position:relative;
+    left: -10%;
+    z-index: 1;
+    bottom: -170px;
+    
+}
+.left{
+    float: left;
 }
 
+.right {
+	float: right;
+}
 #map {
         width: 100%;
         height: 400px;
@@ -21,19 +45,34 @@ img {
 }
 
 h1 h2{
-    margin-top: 10px;
+    margin-top: 20px; 
+    
+}
+
+h3{
+    text-align: center;
+}
+.space {
+    padding-top: 20px;
+    margin-top: 20px;
+}
+
+.valign{
+    vertical-align: middle;
+}
+li {
+    padding-top: 20px;
+    margin-top: 20px;
 }
 .stats{
     width: auto;
-    height: 350px;
-    background-color: #79829a;
+    height: 450px;
+    background-color: #89a7f8;
+    z-index: 1;
     
 }
 .center{
-    display: inline-block;
-    justify-content: center;
-    align-items: center;
-    margin:0px auto;
+    margin:0 auto;
 }
 .container {
     padding-top: 20px;
@@ -127,26 +166,6 @@ body {
 	margin: 0;
 }
 
-.footer .footer-links{
-	list-style: none;
-	font-weight: bold;
-	color:  #ffffff;
-	padding: 35px 0 23px;
-	margin: 0;
-}
-.footer .bold {
-    font-weight: bolder;
-    font-family: sans-serif;
-    color: lightgrey;
-    font-style: italic;
-    
-}
-.footer .footer-links a{
-	display:inline-block;
-	text-decoration: none;
-	color: inherit;
-}
-
 /*media queries to decrease footer at smaller screens*/
 
 @media (max-width: 991px) {
@@ -179,14 +198,9 @@ body {
     .footer {
         display: none;
     }
-.text-center {
-    
-}
 
 
 
-.hide {
-    display: none;
-}
+
 
 

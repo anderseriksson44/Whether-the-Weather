@@ -5,7 +5,6 @@
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-<!--    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">-->
     <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
@@ -42,57 +41,82 @@
         
     <!-- Main jumbotron for a primary marketing message or call to action -->
 <section class="container">
-    <div class="jumbotron">
+    <div class="jumbotron mapp">
         <div id="map"></div>
         <script async defer
         src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC_CEn0WN8oT9awtUxnmC7ypT0AJVRUa44&callback=initMap"></script>
     </div>
     
     <div class="jumbotron stats">
-        <ul class="nav nav-tabs">
-            <li class="active"><a data-toggle="tab" href="#vader">Just nu</a></li>
-            <li><a data-toggle="tab" href="#prognos">Prognos</a></li>
-            <li><a data-toggle="tab" href="#sunset">Solen</a></li>
-            <li><a data-toggle="tab" href="#info">Information</a></li>
+        <ul class="nav nav-pills nav-justified">
+            <li class="in active" id="vv"><a data-toggle="tab" href="#vader">Vädret just nu</a></li>
+<!--            <li><a data-toggle="tab" href="#prognos">Prognos</a></li>-->
+            <li id="ss"><a data-toggle="tab" href="#sunset">Solens upp- och nedgång</a></li>
+<!--            <li><a data-toggle="tab" href="#info">Information</a></li>-->
         </ul>
 
         <div class="tab-content">
             <div id="vader" class="tab-pane fade in active">
-                <img class=img-responsive src=img/light-clouds.png>
-                <h3>Ange plats</h3>
-            </div>
-  
-            <div id="prognos" class="tab-pane fade">
-                <h3>Ange plats</h3>
-            </div>
+                <div class="row">
+                    <div id="heading"></div>
+                    <div class="col-xs-4 space">
+                        <table class="table table-hover">
+                            <thead>
+                                <tr></tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                <td>Temperatur</td>
+                                <td id="t">-</td>
+                            </tr>
+                                <tr>
+                                <td>Vind</td>
+                                <td id="ws">-</td>
+                            </tr>
+                                <tr>
+                                <td>Nederbörd</td>
+                                <td id="pcat">-</td>
+                            </tr>
+                                <tr>
+                                <td>Väder</td>
+                                <td id="wsymb">-</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="col-xs-8">
+                        <div id="vadersymbol">
+                            <h3 class="center-block text-center valign">Ingen plats angiven </h3>
+                        </div>
+                    </div>
+                </div>
+            </div> 
+            
+
   
             <div id="sunset" class="tab-pane fade">
-                <h3>Ange plats</h3>
-                <img class="solupp" src="img/sol-upp.png">
+                <h2 id="place">Ange plats</h2>
+<!--                <button id="sunup" type="button" class="btn btn-success" style="float: left">Solfilmen</button>-->
+<!--          <button id="sundown" type="button" class="btn btn-success" style="float: right">Solnedgång</button>-->
+                <img id="sun" class="solupp" src="img/sol-upp.png">
+<!--                <img id="cloud" class="moln" src="img/Cloud.png">-->
+                <img id="cloud" class="moln" src="img/Cloud.png">
+                <h2 class="left">Solen går upp</h2>
+                <p id="s_upp"></p>
+                <h2 class="right">Solen går ner</h2>
+                <p id="s_upp"></p>
                 
             </div>
-            <div id="info" class="tab-pane fade">
-                <h3>Ange plats</h3>
-            </div>
+            
         </div>
-        
-        
-        
-       
-
     </div>
 </section>
 
-
-    <footer class="footer">
-
-			<p class="footer-slogan">Whether the Weather</p>
-
-			
-
-			<p class="footer-company-name">&copy; Anders Eriksson 2017</p>
-
+<footer class="footer">
+    <p class="footer-slogan">Whether the Weather</p>
+	<p class="footer-company-name">&copy; Anders Eriksson 2017</p>
 </footer>
+
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="city.js"></script>

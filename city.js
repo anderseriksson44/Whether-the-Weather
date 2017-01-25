@@ -80,8 +80,19 @@ $("#stad").on("change", function() {
 //        prognos(truncLat, truncLong);
             
         });
+    
+    
     getWeather(truncLat, truncLong);
-//    solen(truncLat, truncLong, cityName);
+    anim=true;
+    $(".moln").css({
+        left: "-10%",
+        bottom: "-90px"
+    });
+    $(".solupp").css({
+        bottom: "-90px",
+        left: "10%"
+    });
+        solen(truncLat, truncLong, cityName);
     
 });
 
@@ -113,14 +124,16 @@ function solen(lat, long, stad) {
         $("#s_upp").text(soluppTid);
                
         console.log("solen: "+ soluppTid+ " " + solnedTid);
-        
-        $("#sun").delay(1000).animate({bottom: '+=200'},2000);
-        $("#sun").animate({left: '+=350'},2000); 
-        $("#sun").animate({bottom: '+=-200'},3000);
-        $("#cloud").animate({left: '+=340'},8000)    
-
-        
-    
+        if(anim) {
+            $("#sun").delay(1000).animate({bottom: '+=200'},2000);
+            $("#sun").animate({left: '+=350'},2000); 
+            $("#sun").animate({bottom: '+=-200'},3000);
+            $("#cloud").animate({left: '+=340'},8000); 
+            anim=false;
+        }
+        else{
+            
+        }
     });
 };
 
@@ -181,12 +194,25 @@ function getWeather(truncLat, truncLong) {
             }
         }
   
-
+        //Säkerställa så att inte vädret skrivs över av sol-informationen och vice versa
+        if ($("#vader").hasClass("show")) {
+            $("#sunset").css("hide");
+            $("#vader").addClass("in active show");
+            $("#vader").css("show");
+            console.log("w-active");
+        }
+        else if ($("#sunset").hasClass("show")) {
+            $("#vader").css("hide");
+            $("#vader").removeClass("in active show");
+        }
+        
+       
+        
         
         $("#t").html(tempValue + "  C"); 
         $("#ws").html(windValue + "  m/s"); 
         $("#pcat").html(nederbordValue + "  mm"); 
-        
+
         
         if (vaederValue == 1 || vaederValue == 2 ) {
             $("#wsymb").html("Klart väder");
@@ -243,13 +269,8 @@ function getWeather(truncLat, truncLong) {
             $("#vadersymbol").html("<img class='symbol center-block' src=img/snow.png>");
             $("#heading").html("<h3>"+cityName+" har just nu snöfall.</h3>");
             }
-      
 
-        
-        
   });
-    $("#vader").addClass("in active show");
-    $("#vader").css("show");
     
 };
 

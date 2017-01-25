@@ -17,8 +17,8 @@
     width: 100px;
     height: 100px;
     position:relative;
-    bottom: -150px;
-    left: 12%;
+    bottom: -90px;
+    left: 10%;
     z-index: -1;
     
 }
@@ -28,7 +28,7 @@
     position:relative;
     left: -10%;
     z-index: 1;
-    bottom: -170px;
+    bottom: -90px;
     
 }
 .left{

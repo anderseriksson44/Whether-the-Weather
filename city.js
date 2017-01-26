@@ -7,6 +7,7 @@ $(document).ready(function() {
     initMap(lat, long);
     realTime = new Date($.now());
     cityName="Karlskrona";
+    anim=true;
     y=0;
     timestampHour=0;
     getWeather(truncLat, truncLong);
@@ -15,24 +16,17 @@ $(document).ready(function() {
     $("#vader").css("hide");
     $("#vader").removeClass("show");
     $("#sunset").removeAttr("style");
-    console.log("ss klickad");
+//    console.log("ss klickad");
     solen(truncLat, truncLong, cityName);
  
 });
 
 $("#vv").on("click", function(){
     $("#vader").css("show");
-    console.log("vv klickad");
-    
-    
+//    console.log("vv klickad");
 });
 
     
-if ($("#vader").hasClass("show"));
-    {
-        console.log("w-active");
-       
-    };
     
 
     var tiden = realTime.getHours() + ":" + realTime.getMinutes() + ":" + realTime.getSeconds();
@@ -72,17 +66,12 @@ $("#stad").on("change", function() {
 //          Truncated latitud and longitud, for SMHI API to work.
             truncLat=truncate(lat, 6);
             truncLong=truncate(long,6);
-//            console.log(truncLat, truncLong);
-            
-                          
-//      $("#vader").addClass("in active");
-//          solen(truncLat, truncLong, cityName);
-//        prognos(truncLat, truncLong);
-            
         });
     
     
     getWeather(truncLat, truncLong);
+
+//Återställ moln och sol till ursprungsläge efter animering
     anim=true;
     $(".moln").css({
         left: "-10%",
@@ -120,11 +109,12 @@ function solen(lat, long, stad) {
         
         
         $("#place").html("<h2>I "+cityName+" går solen upp klockan " + soluppTid + " och ner kl "+ solnedTid+"</h2>"); 
-//        
+        
         $("#s_upp").text(soluppTid);
                
-        console.log("solen: "+ soluppTid+ " " + solnedTid);
-        if(anim) {
+        
+//Solfilmen
+        if((anim) && ($("#sunset").hasClass("active"))) {
             $("#sun").delay(1000).animate({bottom: '+=200'},2000);
             $("#sun").animate({left: '+=350'},2000); 
             $("#sun").animate({bottom: '+=-200'},3000);
@@ -136,22 +126,6 @@ function solen(lat, long, stad) {
         }
     });
 };
-
-
-    
-
-
-//Fetch wheather data    
-//$("#stad").on("change", function() {
-//    getWeather(truncLat, truncLong);
-//    solen(truncLat, truncLong);
-//});
-    
-    
-//$("li #vader").on ("click", function(){
-//    getWeather(truncLat, truncLong);
-//    
-//});
 
 
 
@@ -172,6 +146,8 @@ function getWeather(truncLat, truncLong) {
             
         }
         var mattid = vaderData.timeSeries[y];
+
+//Hitta de väderparametrar jag använder    
         
         for (var i=0; i<allavaderposter; i++) {
         var Name= mattid.parameters[i].name;
@@ -194,7 +170,7 @@ function getWeather(truncLat, truncLong) {
             }
         }
   
-        //Säkerställa så att inte vädret skrivs över av sol-informationen och vice versa
+//Säkerställa så att inte vädret skrivs över av sol-informationen och vice versa
         if ($("#vader").hasClass("show")) {
             $("#sunset").css("hide");
             $("#vader").addClass("in active show");
@@ -207,11 +183,13 @@ function getWeather(truncLat, truncLong) {
         }
         
        
-        
+        //Skriva ut värdet på alla parametrar
         
         $("#t").html(tempValue + "  C"); 
         $("#ws").html(windValue + "  m/s"); 
         $("#pcat").html(nederbordValue + "  mm"); 
+
+        
 
         
         if (vaederValue == 1 || vaederValue == 2 ) {
@@ -275,130 +253,6 @@ function getWeather(truncLat, truncLong) {
 };
 
 
-//function prognos(truncLat, truncLong) {    
-//    var url = "http://opendata-download-metfcst.smhi.se/api/category/pmp2g/version/2/geotype/point/lon/"+truncLong+"/lat/"+truncLat+"/data.json";
-//    $.get(url, function(vaderData) {
-//        
-//        var timestamps=vaderData.timeSeries.length; 
-//        var allavaderposter = vaderData.timeSeries[0].parameters.length;
-//        console.log(allavaderposter);
-//        console.log(timestamps);
-//       
-//        var realTime = new Date($.now());
-//        var realTimeHour = realTime.getHours();
-//        
-//        var forcastDay;
-//        var day1, day2, day3, day4, day5, day6, day7;
-//        for (var d=0; d<timestamps; d++) {
-//            var timestamp = new Date(vaderData.timeSeries[d].validTime);
-//            forcastDay = timestamp.getDay();
-//            if (forcastDay == day + 1) {
-//                day1 = forcastDay;
-//            }
-//            if (forcastDay == day + 2) {
-//                day2 = forcastDay
-//            }   
-//            if (forcastDay == day + 3) {
-//                day3 = forcastDay
-//            }   
-//            if (forcastDay == day + 4) {
-//                day4 = forcastDay
-//            }   
-//            if (forcastDay == day + 5) {
-//                day5 = forcastDay
-//            }   
-//            if (forcastDay == day + 6) {
-//                day6 = forcastDay
-//            }   
-//            if (forcastDay == day + 7) {
-//                day7= forcastDay
-//            }   
-//                
-//        };
-//        console.log("Today: " + day);
-//        console.log("Prognos: " + forcastDay);
-//        
-//        var mattid = vaderData.timeSeries[y];
-//        console.log("Timestamp hour är: "+timestampHour);
-//        console.log("mattid hour är: "+mattid);
-//        
-//        
-//        for (var i=0; i<allavaderposter; i++) {
-//        var Name= mattid.parameters[i].name;
-//        
-//            if (Name == "t") {
-//                temp=Name;
-//                tempValue=mattid.parameters[i].values[0];
-//            }
-//            if (Name=="ws") {
-//                wind=Name;
-//                windValue=mattid.parameters[i].values[0];
-//            }
-//            if (Name=="pcat") {
-//                nederbord=Name;
-//                nederbordValue=mattid.parameters[i].values[0];
-//            }
-//            if (Name=="Wsymb") {
-//                vaeder=Name;
-//                vaederValue=mattid.parameters[i].values[0];
-//            }
-//        }
-//  
-//
-//        $("#heading").html("<th>"+cityName+" har just nu följande väder: </th>");
-//        $("#t").html(tempValue); 
-//        $("#ws").html(windValue); 
-//        $("#pcat").html(nederbordValue); 
-//        
-//        
-//        if (vaederValue == 1 || vaederValue == 2 ) {
-//            $("#wsymb").html("Klart väder");
-//            $("#vadersymbol").html("<img class=symbol center-block src=img/clearsky.png>");
-//            }
-//        else if (vaederValue == 3 || vaederValue == 4 ) {
-//            $("#wsymb").html("Klart till halvklart");
-//            $("#vadersymbol").html("<img class='symbol center-block' src=img/light-clouds.png>");
-//            }
-//        else if (vaederValue == 5 || vaederValue == 6 ) {
-//            $("#wsymb").html("Molnigt");
-//            $("#vadersymbol").html("<img class='symbol center-block' src=img/cloudy.png>");
-//            }
-//        else if (vaederValue == 7) {
-//            $("#wsymb").html("Dimmigt");
-//            $("#vadersymbol").html("<img class='symbol center-block' src=img/fog.png>");
-//            }
-//        else if (vaederValue == 8) {
-//            $("#wsymb").html("Regnskurar");
-//            $("#vadersymbol").html("<img class='symbol center-block' src=img/rain.png>");
-//            }
-//        else if (vaederValue == 9) {
-//            $("#wsymb").html("Åskskurar");
-//            $("#vadersymbol").html("<img class='symbol center-block' src=img/thunderstorms.png>");
-//            }
-//        else if (vaederValue == 10 || vaederValue == 14) {
-//            $("#wsymb").html("Snöblandat regn");
-//            $("#vadersymbol").html("<img class='symbol center-block' src=img/snow-rain.png>");
-//            }
-//        else if (vaederValue == 11) {
-//            $("#wsymb").html("Snöbyar");
-//            $("#vadersymbol").html("<img class='symbol center-block' src=img/snobyar.png>");
-//            }
-//        else if (vaederValue == 12) {
-//            $("#wsymb").html("Regn");
-//            $("#vadersymbol").html("<img class='symbol center-block' src=img/rain.png>");
-//            }
-//        else if (vaederValue == 13) {
-//            $("#wsymb").html("Åska");
-//            $("#vadersymbol").html("<img class='symbol center-block' src=img/thunderstorms.png>");
-//            }
-//        else if (vaederValue == 15) {
-//            $("#wsymb").html("Snöfall");
-//            $("#vadersymbol").html("<img class='symbol center-block' src=img/snow.png>");
-//            }
-//      
-//
-//  });
-//};
     
 function truncate (num, places) {
   return Math.trunc(num * Math.pow(10, places)) / Math.pow(10, places);

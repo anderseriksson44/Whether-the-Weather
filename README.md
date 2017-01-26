@@ -36,18 +36,15 @@ Also, the searched place is also printed on a map, through another API request.
 
 I have worked with basically these 3 differnt APIs
 
-* Google Maps
-(https://maps.googleapis.com)
-- To find the location information (latitud and longitud) of a certain place.
-- And also to print the map of the searched place.
+* Google Maps (https://maps.googleapis.com)
+To find the location information (latitud and longitud) of a certain place.
+And also to print the map of the searched place.
 
-* sunrise-sunset.org
-(http://api.sunrise-sunset.org)
-- To find when the sun goes up and down for the searched place.
+* sunrise-sunset.org (http://api.sunrise-sunset.org)
+To find when the sun goes up and down for the searched place.
 
-*SMHI
-(http://opendata-download-metfcst.smhi.se)
-- To get the weather from the searched place.
+* SMHI (http://opendata-download-metfcst.smhi.se)
+To get the weather from the searched place.
 
 #### Working process
 
